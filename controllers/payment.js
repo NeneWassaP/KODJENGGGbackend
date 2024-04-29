@@ -69,7 +69,7 @@ exports.cardPayment = async (req, res, next) => {
 
     } catch (error) {
         console.error("Error creating user:", error.message);
-        res.status(400).json({ error: "Error payment" });
+        res.status(400).json({ error: "Error payment", errorMssg: error.message });
     }
 };
 

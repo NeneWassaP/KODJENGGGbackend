@@ -58,7 +58,11 @@ app.use(hpp()) ;
 //const endpointSecret = "whsec_1bc1e8c6cdb4ffb49d967af0ce7be7cb2b8f7601c0ec99304218a81ebf3a6b1e";
 
 //Enable CORS
-app.use(cors()) ;
+const corsOptions = {
+  origin: process.env.FRONTEND_URL,
+  credentials: true,
+};
+app.use(cors(corsOptions));
 
 
 //Cookie parser
