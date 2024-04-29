@@ -76,7 +76,7 @@ module.exports = router;
  * @swagger
  * /payment/{id}:
  *   get:
- *     summary: Get the payment by id
+ *     summary: Get the payment by reservation id
  *     tags: [Payment]
  *     parameters:
  *       - in: path
@@ -84,7 +84,7 @@ module.exports = router;
  *         schema:
  *           type: string
  *         required: true
- *         description: The payment id
+ *         description: The reservation id
  *     responses:
  *       200:
  *         description: The hospital description by id
@@ -102,6 +102,8 @@ module.exports = router;
  *   post:
  *     summary: Create a new payment
  *     tags: [Payment]
+ *     security:
+ *       - bearerAuth: []
  *     requestBody:
  *       required: true
  *       content:
@@ -123,46 +125,42 @@ module.exports = router;
  * @swagger
  * /payment/card/{id}:
  *   put:
- *     summary: Update the payment by the id
+ *     summary: Update the payment by the reservation id and Credit card stripe
  *     tags: [Payment]
+ *     security:
+ *       - bearerAuth: []
  *     parameters:
  *       - in: path
  *         name: id
  *         schema:
  *           type: string
  *         required: true
- *         description: The payment id
- *     requestBody:
- *       required: true
- *       content:
- *         application/json:
- *           schema:
- *             $ref: '#/components/schemas/Reservation'
+ *         description: The reservation id
  *     responses:
  *       message:
- *          description: Chechout success
+ *          description: Checkout success
+ *       400:
+ *          description: Error payment
  */
 
 /**
  * @swagger
  * /payment/promtpay/{id}:
  *   put:
- *     summary: Update the payment by the id
+ *     summary: Update the payment by the reservation id and Promtpay stripe
  *     tags: [Payment]
+ *     security:
+ *       - bearerAuth: []
  *     parameters:
  *       - in: path
  *         name: id
  *         schema:
  *           type: string
  *         required: true
- *         description: The payment id
- *     requestBody:
- *       required: true
- *       content:
- *         application/json:
- *           schema:
- *             $ref: '#/components/schemas/Reservation'
+ *         description: The reservation id
  *     responses:
  *       message:
- *          description: Chechout success
+ *          description: Checkout success
+ *       400:
+ *         description: Error payment
  */
