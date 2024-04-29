@@ -1,0 +1,23 @@
+@startuml Manage Hotels (GET)
+
+header Sameple Hotel Booking Sequence Diagram
+footer Page %page% of %lastpage%
+title "Manage Hotels (GET)"
+
+participant "Client" as client
+participant "<<javaScript>>\n:server" as server
+participant "<<router>>\n:hotels" as routerHotels
+participant "<<controllers>>\n:hotels" as controllersHotels
+participant "<<model>>\n:Hotel" as modelHotel
+database "<<MongoDB>>\n:hotels" as HotelsDatabase
+
+client->server ++:req.get('/hotels')
+server->routerHotels ++:app.use('/hotels',hotels)
+routerHotels -> controllersHotels ++:getHotels()
+controllersHotels->modelHotel ++:find(req.query)
+modelHotel ->HotelsDatabase ++: HotelSchema
+HotelsDatabase --> modelHotel --: hotel
+controllersHotels --> modelHotel ++:hotel
+controllersHotels->client --:response
+
+@enduml
