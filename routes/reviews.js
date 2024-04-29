@@ -28,7 +28,7 @@ router
     .put(protect, authorize("hotelmanager"), updateReply)
 router
     .route("/report/:id")
-    .put(protect , authorize("user") , updateReport)
+    .put(protect , updateReport)
 
 module.exports = router;
 
