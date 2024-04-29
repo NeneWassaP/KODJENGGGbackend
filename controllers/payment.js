@@ -55,7 +55,7 @@ exports.cardPayment = async (req, res, next) => {
 
           // Update the reservation with payment session ID and status
         //const updateReservation = await Reservation.findByIdAndUpdate(req.params.id, {sessionId: session.id})
-          //reservation.status = session.status == "succeeded" ? "reserves" : "unpaid"; // Update status as needed
+        //reservation.status = session.status == "succeeded" ? "reserves" : "unpaid"; // Update status as needed
         reservation.sessionId = session.id;
         await reservation.save();
         
@@ -175,7 +175,7 @@ exports.webhooks = async (req, res) => {
         //     runValidators: true,
         //   })
   
-        reservation.status = (paymentSuccessData.status == "complete")? "reserved" : "unpaid";
+        reservation.status = (paymentSuccessData.status == "succeeded")? "reserved" : "unpaid";
         await reservation.save();
   
         console.log("=== update result", reservation);
