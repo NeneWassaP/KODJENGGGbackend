@@ -42,7 +42,6 @@ app.use(mongoSanitize()) ;
 app.use(helmet()) ;
 //Prevent XSS attacks
 app.use(xss()) ;
-app.use('/api/v1/auth', authRoutes);
 
 
 //Rate Limiting 
