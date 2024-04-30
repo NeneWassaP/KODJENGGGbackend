@@ -175,7 +175,7 @@ exports.webhooks = async (req, res) => {
         //     runValidators: true,
         //   })
   
-        reservation.status = (paymentSuccessData.status == "succeeded")? "reserved" : "unpaid";
+        reservation.status = (paymentSuccessData.status === 'complete')? "reserved" : "unpaid";
         await reservation.save();
   
         console.log("=== update result", reservation);
